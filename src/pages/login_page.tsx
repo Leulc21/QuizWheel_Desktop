@@ -1,3 +1,4 @@
+import { ModeToggle } from "@/components/mode-toggle";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -41,6 +42,10 @@ export function Login() {
 
       {/* Overlay for better readability */}
       <div className="absolute inset-0 bg-background/30 backdrop-blur-[2px]" />
+      {/* Theme Toggle - Top Right */}
+      <div className="absolute top-4 right-4 z-20">
+        <ModeToggle />
+      </div>
 
       {/* Login Content */}
       <div className="relative z-10 flex min-h-screen items-center justify-center p-4">
@@ -49,9 +54,13 @@ export function Login() {
           <div className="text-center space-y-4">
             <div className="flex justify-center">
               <img
-                src="/assets/logo.svg"
+                src="/src/assets/logo.svg"
                 alt="Quiz Wheel Logo"
                 className="h-20 w-20 md:h-24 md:w-24 object-contain"
+                style={{
+                  filter:
+                    "brightness(0) saturate(100%) invert(52%) sepia(98%) saturate(1230%) hue-rotate(0deg) brightness(102%) contrast(105%)",
+                }}
               />
             </div>
             <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
