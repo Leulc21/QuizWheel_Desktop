@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { RetroGrid } from "@/components/ui/retro-grid";
 import { Eye, EyeOff, LogIn } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 export function Login() {
   const [username, setUsername] = useState("");
@@ -12,19 +13,19 @@ export function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     setIsLoading(true);
 
-    // Simulate login - replace with actual Tauri backend call
     try {
       await new Promise((resolve) => setTimeout(resolve, 1500));
 
+      // Replace with actual authentication logic
       if (username === "demo" && password === "demo") {
-        console.log("Login successful");
-        // Navigate to dashboard or handle success
+        navigate("/home");
       } else {
         setError("Invalid username or password");
       }
@@ -42,6 +43,7 @@ export function Login() {
 
       {/* Overlay for better readability */}
       <div className="absolute inset-0 bg-background/30 backdrop-blur-[2px]" />
+
       {/* Theme Toggle - Top Right */}
       <div className="absolute top-4 right-4 z-20">
         <ModeToggle />
@@ -63,7 +65,7 @@ export function Login() {
                 }}
               />
             </div>
-            <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
+            <h1 className="text-4xl font-bold tracking-tight bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">
               Quiz Wheel
             </h1>
             <p className="text-muted-foreground text-sm">
@@ -86,7 +88,7 @@ export function Login() {
                 onChange={(e) => setUsername(e.target.value)}
                 required
                 disabled={isLoading}
-                className="h-11 bg-background/50 backdrop-blur-sm border-muted-foreground/20 focus-visible:ring-primary/50"
+                className="h-11 bg-background/50 backdrop-blur-sm border-muted-foreground/20 focus-visible:ring-orange-500"
               />
             </div>
 
@@ -98,7 +100,7 @@ export function Login() {
                 </Label>
                 <button
                   type="button"
-                  className="text-xs text-muted-foreground hover:text-primary transition-colors"
+                  className="text-xs text-muted-foreground hover:text-orange-500 transition-colors"
                 >
                   Forgot password?
                 </button>
@@ -112,7 +114,7 @@ export function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   disabled={isLoading}
-                  className="h-11 bg-background/50 backdrop-blur-sm border-muted-foreground/20 focus-visible:ring-primary/50 pr-11"
+                  className="h-11 bg-background/50 backdrop-blur-sm border-muted-foreground/20 focus-visible:ring-orange-500 pr-11"
                 />
                 <button
                   type="button"
@@ -135,7 +137,7 @@ export function Login() {
             {/* Submit Button */}
             <Button
               type="submit"
-              className="w-full h-11 text-base font-semibold bg-gradient-to-r from-primary to-primary/80 hover:from-primary/90 hover:to-primary/70 transition-all duration-300 shadow-lg hover:shadow-primary/25"
+              className="w-full h-11 text-base font-semibold bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 transition-all duration-300 shadow-lg hover:shadow-orange-500/25"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -156,7 +158,7 @@ export function Login() {
               Don't have an account?{" "}
               <button
                 type="button"
-                className="text-primary hover:underline font-medium transition-colors"
+                className="text-orange-500 hover:underline font-medium transition-colors"
                 onClick={() => console.log("Navigate to sign up")}
               >
                 Sign up
@@ -164,7 +166,7 @@ export function Login() {
             </p>
           </form>
 
-          {/* Version Info (Optional) */}
+          {/* Version Info */}
           <div className="text-center">
             <p className="text-xs text-muted-foreground/60">
               Version 1.0.0 • Desktop App
